@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://www.paypal.me/guillaumearnx"><img src="https://img.shields.io/badge/-PayPal-%2300457C?logo=paypal&style=for-the-badge" alt="PayPal Donate"></a>
-  <a href="https://discord.gg/BrE65m6tKc"><img src="https://img.shields.io/discord/661708081926897684.svg?color=blue&label=discord&logo=discord&style=for-the-badge" alt="Join the chat"></a>
+  <a href="https://discord.gg/BrE65m6tKc"><img src="https://img.shields.io/discord/840647292864430080.svg?color=blue&label=discord&logo=discord&style=for-the-badge" alt="Join the chat"></a>
 </p>
 
 # Mais qu'est-ce que ?
