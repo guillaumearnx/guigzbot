@@ -11,11 +11,7 @@ Voila donc un bot OpenSource, sans réelle utilité mais multifonctions ;)
 
 # Documentation
 
-Pour commencer il est open-source. Quésaco ? Ça veut tout simplement dire que n'importe qui peut proposer des améliorations, patcher des bugs, s'en inspirer pour des projets...
-
-Ensuite ce petit bot malgré ses quelques serveurs possède un dashboard, un interface de configuration web, pour rendre sa configuration toujours plus simple. Le panel [ici](https://chaunbot.chaun14.fr/)
-
-Enfin il possède en plus des fonctionnalitées dites "communes" (ex: warn, ban, kick, autorole, musique...), des systèmes bien spécifique comme l'auto-haste
+--VIDE
 
 # Notes techniques
 
@@ -26,5 +22,7 @@ NodeJS v14
 # Remerciements et notes :
 
 Ayfri pour son adaptation de command handler assez mignonne [ici](https://github.com/Ayfri/basicCommandHandler)
+
 Sworder pour son [dashboard](https://github.com/InspirusM/Dashboard.io) de bot discord
+
 Chaun14 pour son readme et quelques fonctionnalités
