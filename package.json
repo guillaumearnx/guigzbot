@@ -4,15 +4,29 @@
   "description": "bot for garnx.fr server",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "garnx",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
     "colors": "^1.4.0",
+    "crypto": "^1.0.1",
     "discord.js": "^12.5.3",
+    "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "recursive-readdir": "^2.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillaumearnx/guigzbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guillaumearnx/guigzbot/issues"
+  },
+  "homepage": "https://github.com/guillaumearnx/guigzbot#readme"
 }

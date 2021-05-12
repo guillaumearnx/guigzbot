@@ -1,17 +1,17 @@
 //Dépendences
-const {Client, Collection} = require("discord.js");
-const fs = require('fs')
-const colors = require('colors')
-const recursiveRead = require('recursive-readdir')
+const {Client, Collection} = require('discord.js');
+const fs = require('fs');
+const recursiveRead = require('recursive-readdir');
+const {runWebServer} = require("./webserver.js");
+const {BOT_TOKEN} = require('./config.json');
+require('colors');
 
 //Variables d'environnement
-const config = require("./config.json")
 let nbCommandes = 0;
 let nbEvents = 0;
 
 //Variable Client
 const bot = new Client();
-bot.website = require("./dashboard/dashboard.js")
 bot.commands = new Collection();
 bot.aliases = new Collection();
 console.log(("Lancement du bot ...").brightRed);
@@ -53,15 +53,18 @@ recursiveRead('./commandes/', (err, files) => {
     if (nbCommandes === 0) console.log("Aucune commande active".yellow)
 })
 
-
 //Script
-bot.login(config.token).catch(() => {
-    return console.log("Can't connect ...")
+bot.login(BOT_TOKEN).catch(() => {
+    console.log("Can't connect ...");
+    process.exit(0);
 });
+runWebServer(bot);
 
 //Debug
 bot.on("warn", (e) => console.warn(e));
 //bot.on("debug", (e) => console.info(e));
 
 //Export
-module.exports = {bot}
+module.exports = {
+    bot
+}
