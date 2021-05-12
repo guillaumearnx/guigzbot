@@ -1,0 +1,19 @@
+{
+  "BOT_TOKEN": "",
+  "BOT_PREFIX": "",
+  "RECAPTCHA": {
+    "RECAPTCHA_SITE_KEY": "",
+    "RECAPTCHA_SECRET_KEY": "",
+    "DOMAIN": "",
+    "PORT": "",
+    "VERIFIED_ROLE_ID": ""
+  },
+  "DISCORD_GUILD_ID": "",
+  "OTHERS": {
+    "GITHUB": "https://github.com/guillaumearnx"
+  },
+  "OWNER": {
+    "ID": "629786143906594828",
+    "NAME": "guillaumearnx#4587"
+  }
+}

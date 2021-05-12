@@ -3,8 +3,25 @@ const {Client, Collection} = require('discord.js');
 const fs = require('fs');
 const recursiveRead = require('recursive-readdir');
 const {runWebServer} = require("./webserver.js");
-const {BOT_TOKEN} = require('./config.json');
+const {BOT_TOKEN, BOT_PREFIX, DISCORD_GUILD_ID} = require('./config.json');
 require('colors');
+
+//Verification config
+(() => {
+    const empty = [["", " "], [null, undefined]]
+    if (empty[0].indexOf(BOT_TOKEN) > -1 || empty[1].indexOf(BOT_TOKEN) > -1) {
+        console.log("Please set a bot token !");
+        process.exit(0);
+    }
+    if (empty[0].indexOf(BOT_PREFIX) > -1 || empty[1] === BOT_PREFIX) {
+        console.log("Please set a prefix !");
+        process.exit(0);
+    }
+    if (empty[0].indexOf(DISCORD_GUILD_ID) > -1 || empty[1] === DISCORD_GUILD_ID) {
+        console.log("Please set your main guild id !");
+        process.exit(0);
+    }
+})()
 
 //Variables d'environnement
 let nbCommandes = 0;
