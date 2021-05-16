@@ -53,14 +53,12 @@ recursiveRead('./commandes/', (err, files) => {
     if (err) return console.error(err);
     console.log(`\nCommandes : ` + `(${files.length})`.yellow);
     files.forEach(file => {
+        if (!file.endsWith('.js') || file.startsWith('-')) return
         let props = require(`./${file}`);
-        let filePath = file.replace(/\\/g, "/")
-        let commandName = filePath.split(/\//g).reverse()[0];
-        if (!commandName.endsWith('.js') || commandName.startsWith('-')) return
-        commandName = commandName.split('.')[0];
-        bot.commands.set(commandName.toLowerCase(), props);
+        let commandName = props.config.name.toLowerCase();
+        bot.commands.set(commandName, props);
         props.config.aliases.forEach(alias => {
-            bot.aliases.set(alias.toLowerCase(), props.config.name.toLowerCase());
+            bot.aliases.set(alias.toLowerCase(), commandName);
         });
         let aliases = props.config.aliases.map(e => e.toString()).join(", ");
         console.log(`\tChargement de la commande : ` + `${commandName}`.brightRed);

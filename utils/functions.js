@@ -34,8 +34,14 @@ async function checkOwner(id){
     return false;
 }
 
+async function findCommand(bot, arg) {
+    return bot.commands.get(arg) || bot.commands.get(bot.aliases.get(arg));
+}
+
+
 module.exports = {
     addRole,
     welcomeSend,
-    checkOwner
+    checkOwner,
+    findCommand
 }
