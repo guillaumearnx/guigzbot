@@ -1,0 +1,26 @@
+{
+  "_comment": "Hello, welcome in config. Allowed values for RECAPTCHA['ACTIVE'] are ON, OFF, TRUE, FALSE, Y, N",
+  "BOT_TOKEN": "",
+  "BOT_PREFIX": "",
+  "CHANNELS": {
+    "BOTS_LOGS": ""
+  },
+  "DISCORD_GUILD_ID": "",
+  "OTHERS": {
+    "GITHUB": "https://github.com/guillaumearnx"
+  },
+  "OWNERS": [
+    {
+      "ID": "629786143906594828",
+      "NAME": "guillaumearnx#4587"
+    }
+  ],
+  "RECAPTCHA": {
+    "ACTIVE": "",
+    "DOMAIN": "",
+    "PORT": "",
+    "RECAPTCHA_SITE_KEY": "",
+    "RECAPTCHA_SECRET_KEY": "",
+    "VERIFIED_ROLE_ID": ""
+  }
+}

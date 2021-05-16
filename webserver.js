@@ -42,11 +42,20 @@ function runWebServer(bot) {
     botTarget = bot
     //Verification config
     const empty = [["", " "], [null, undefined]]
-    if (empty[0].indexOf(RECAPTCHA["RECAPTCHA_SITE_KEY"]) > -1 || empty[1].indexOf(RECAPTCHA["RECAPTCHA_SITE_KEY"]) > -1) {
+    const value = ["Y", "F", "TRUE", "YES", "ON"]
+    if (empty[1].includes(RECAPTCHA["ACTIVE"]) || !value.includes(RECAPTCHA["ACTIVE"].toUpperCase())) {
+        console.log("ReCaptcha active parameter is not correct or set to false, disabling auth....")
+        return;
+    }
+    if (empty[0].includes(RECAPTCHA["RECAPTCHA_SITE_KEY"]) || empty[1].includes(RECAPTCHA["RECAPTCHA_SITE_KEY"])) {
         console.log("No valid RECAPTCHA V2 SITE KEY, disabling auth...");
         return;
     }
-    if (empty[0].indexOf(RECAPTCHA["RECAPTCHA_SECRET_KEY"]) > -1 || empty[1].indexOf(RECAPTCHA["RECAPTCHA_SECRET_KEY"]) > -1) {
+    if (empty[0].includes(RECAPTCHA["RECAPTCHA_SITE_KEY"]) || empty[1].includes(RECAPTCHA["RECAPTCHA_SITE_KEY"])) {
+        console.log("No valid RECAPTCHA V2 SITE KEY, disabling auth...");
+        return;
+    }
+    if (empty[0].includes(RECAPTCHA["RECAPTCHA_SECRET_KEY"]) || empty[1].includes(RECAPTCHA["RECAPTCHA_SECRET_KEY"])) {
         console.log("No valid RECAPTCHA V2 SECRET KEY, disabling auth...");
         return;
     }
@@ -62,7 +71,7 @@ function runWebServer(bot) {
     app.listen(RECAPTCHA["PORT"], () => console.log(`[Captcha Dash] Listening on port ${RECAPTCHA["PORT"]}.`));
 }
 
-function getRunning(){
+function getRunning() {
     return running;
 }
 

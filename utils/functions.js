@@ -1,5 +1,5 @@
 const {MessageEmbed} = require('discord.js')
-const {RECAPTCHA, DISCORD_GUILD_ID} = require("../config.json")
+const {RECAPTCHA, DISCORD_GUILD_ID, OWNERS} = require("../config.json")
 
 async function addRole(bot, discordId) {
     try {
@@ -25,7 +25,17 @@ async function welcomeSend(bot, discordId) {
     }*/
 }
 
+async function checkOwner(id){
+    for(let owner of OWNERS){
+        if(owner["ID"] === id){
+            return true;
+        }
+    }
+    return false;
+}
+
 module.exports = {
     addRole,
-    welcomeSend
+    welcomeSend,
+    checkOwner
 }
