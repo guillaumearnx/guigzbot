@@ -15,20 +15,26 @@ module.exports.run = async (bot, message, args) => {
         helpEmbed.setFooter(`*help <command> pour une aide détaillée`);
         const categories = new Set(bot.commands.map(c => c.config.category));
         for (let category of categories) {
-            helpEmbed.addField(category, bot.commands.map(c => `**\`${c.config.name}\`** : ${c.help.description}`));
+            let categCommands = [];
+            bot.commands.forEach(c => {
+                if(c.config.category === category)
+                    categCommands.push(`**\`${c.config.name}\`** : ${c.help.description}`);
+            })
+            helpEmbed.addField(category, categCommands);
         }
     }
     await message.channel.send(helpEmbed);
 };
 module.exports.config = {
     category: 'Utils',
+    specialPermissions: '',
     name: __filename.slice(__dirname.length + 1, __filename.length - 3),
     aliases: ['h'],
-    forceBotChannel: true,
+    forceBotChannel: false,
 };
 
 module.exports.help = {
     description: 'Aide concernant le bot',
-    syntax: `help\nhelp <command>`,
+    syntax: `help [command]`,
     examples: `help help`,
 };

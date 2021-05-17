@@ -1,7 +1,9 @@
 const {createCanvas, loadImage} = require('canvas')
 const path = require('path')
-const {MessageAttachment} = require("discord.js");
+const {MessageAttachment, MessageEmbed} = require("discord.js");
 const {RECAPTCHA, DISCORD_GUILD_ID, OWNERS, CHANNELS} = require("../config.json")
+const hastebin = require('hastebin.js');
+const haste = new hastebin({url: 'https://paste.garnx.fr'});
 
 async function addRole(bot, member) {
     try {
@@ -19,7 +21,7 @@ async function welcomeSend(bot, member) {
     const canvas = createCanvas(700, 250)
     const ctx = canvas.getContext('2d')
     const background = await loadImage(
-        path.join(__dirname, './imgs/background.png')
+        path.join(__dirname, `../assets/imgs/embedmember/image${Math.floor(Math.random() * 3)}.jpg`)
     )
     let x = 0
     let y = 0
@@ -33,11 +35,11 @@ async function welcomeSend(bot, member) {
     y = 25
     ctx.drawImage(pfp, x, y)
     ctx.fillStyle = '#ffffff'
-    ctx.font = '35px sans-serif'
     let text = `Bienvenue ${member.user.tag}!`
+    ctx.font = `${ctx.measureText(text).width / 5.6 }px sans-serif`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 60 + pfp.height)
-    ctx.font = '30px sans-serif'
+    ctx.font = '28px sans-serif'
     text = `Membre n°${bot.guilds.cache.get(`${DISCORD_GUILD_ID}`).memberCount}`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 100 + pfp.height)
@@ -54,8 +56,21 @@ async function checkOwner(id) {
     return false;
 }
 
+async function reportErr(bot, err, description){
+    let errorLink =  await haste.post(err);
+    let errEmbed = new MessageEmbed()
+        .setTitle("Rapport d'erreur")
+        .setDescription(description)
+        .addField('Erreur :', err)
+        .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
+        .setTimestamp()
+        .setColor('#dd0000');
+    bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(errEmbed)
+}
+
 module.exports = {
     addRole,
     welcomeSend,
-    checkOwner
+    checkOwner,
+    reportErr
 }

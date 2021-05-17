@@ -14,6 +14,7 @@ module.exports = async (bot, member) => {
             .setTitle('reCAPTCHA Verification')
             .setDescription(`To gain access to this server you must solve a captcha. The link will expire in 15 minutes.\nhttp://${RECAPTCHA["DOMAIN"] === '' ? `localhost:${RECAPTCHA["PORT"]}` : RECAPTCHA["DOMAIN"]}/verify/${linkId}?sitekey=${RECAPTCHA["RECAPTCHA_SITE_KEY"]}`)
             .setColor('BLUE')
+            .setFooter(`ReCaptcha by ${bot.user.username}`, bot.user.displayAvatarURL())
         member.send(embed);
     } else {
         if (empty[0].indexOf(RECAPTCHA["VERIFIED_ROLE_ID"]) > -1 || empty[1].indexOf(RECAPTCHA["VERIFIED_ROLE_ID"]) > -1) {

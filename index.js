@@ -5,6 +5,7 @@ const recursiveRead = require('recursive-readdir');
 const {runWebServer} = require("./webserver.js");
 const {BOT_TOKEN, BOT_PREFIX, DISCORD_GUILD_ID} = require('./config.json');
 require('colors');
+const {reportErr} = require("./utils/functions");
 
 //Verification config
 (() => {
@@ -77,6 +78,7 @@ runWebServer(bot);
 
 //Debug
 bot.on("warn", (e) => console.warn(e));
+bot.on("error", async (e) => await reportErr(bot, e, 'Oh oh ... Un petit soucis est survenu.'));
 //bot.on("debug", (e) => console.info(e));
 
 //Export
