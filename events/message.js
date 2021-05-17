@@ -1,6 +1,9 @@
 const {MessageEmbed} = require("discord.js");
 const {BOT_PREFIX, CHANNELS} = require('../config.json');
-const {checkOwner, findCommand} = require('../utils/functions')
+const {checkOwner} = require('../utils/functions')
+const hastebin = require('hastebin.js');
+const haste = new hastebin({url: 'https://paste.garnx.fr'});
+
 
 module.exports = async (bot, message) => {
     if (message.author.bot || message.channel.type === 'dm') {
@@ -31,15 +34,16 @@ module.exports = async (bot, message) => {
             }
         }
     }
-    cmd.run(bot, message, args).catch(warning => {
-        /*let errEmbed = new MessageEmbed()
+
+    cmd.run(bot, message, args).catch(async (warning) => {
+        let err = (warning.stack.length > 1000) ? await haste.post(warning.stack) : warning.stack;
+        let errEmbed = new MessageEmbed()
             .setDescription('Oh oh ... Un petit soucis est survenu pendant l\'éxecution de la commande : **' + cmd.config.name + '**.')
-            .addField('Erreur :', warning.stack.length > 1024 ?  : warning.stack)
+            .addField('Erreur :', err)
             .setFooter(bot.user.username, bot.user.displayAvatarURL())
             .setTimestamp()
             .setColor('#dd0000');
-        bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(errEmbed);*/
-        console.log(warning.stack)
+        bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(errEmbed);
     });
 }
 ;

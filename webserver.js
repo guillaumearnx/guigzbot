@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const {isValidLink, getDiscordId, removeLink} = require("./utils/pools");
 const {addRole} = require("./utils/functions");
-const {RECAPTCHA} = require("./config.json");
+const {RECAPTCHA, CHANNELS, DISCORD_GUILD_ID} = require("./config.json");
 let running = false, botTarget;
 
 const app = express();
@@ -31,7 +31,7 @@ app.post('/verify/:verifyId?', async (req, res) => {
     if (!isValidLink(req.params.verifyId)) return res.sendFile(path.join(__dirname, './utils/captcha/html/invalidLink.html'));
 
     // noinspection JSUnresolvedVariable
-    await addRole(botTarget, getDiscordId(req.params.verifyId));
+    await addRole(botTarget, botTarget.guilds.cache.get(`${DISCORD_GUILD_ID}`).members.cache.get(getDiscordId(req.params.verifyId)));
 
     // noinspection JSUnresolvedVariable
     removeLink(req.params.verifyId);

@@ -17,9 +17,9 @@ module.exports = async (bot, member) => {
         member.send(embed);
     } else {
         if (empty[0].indexOf(RECAPTCHA["VERIFIED_ROLE_ID"]) > -1 || empty[1].indexOf(RECAPTCHA["VERIFIED_ROLE_ID"]) > -1) {
-            await welcomeSend(bot, member.id);
+            await welcomeSend(bot, member);
         } else {
-            await addRole(bot, member.id)
+            await addRole(bot, member)
         }
     }
 };

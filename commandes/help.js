@@ -1,28 +1,27 @@
 const {MessageEmbed} = require("discord.js");
-const {findCommand} = require("../utils/functions")
 
 module.exports.run = async (bot, message, args) => {
-    const helpEmbed = new MessageEmbed();
-    const commande = findCommand(bot, args[0])
+    const helpEmbed = new MessageEmbed()
+        .setColor("#4287F5")
+    const commande = bot.commands.get(args[0]) || bot.commands.get(bot.aliases.get(args[0]));
     if (commande) {
-        helpEmbed.setTitle(`Aide pour la commande : ${commande.name}`);
-        helpEmbed.setDescription(`<> = Requis, [] = Optionnel\nCatégorie : **${commande.category}**`);
-        helpEmbed.addField('Description :', commande.description);
-        helpEmbed.addField('Utilisation :', commande.syntax.length > 0 ? commande.syntax : commande.name);
-        helpEmbed.addField('Description :', commande.description);
-        helpEmbed.addField('Aliases :', `\`${commande.aliases.length > 0 ? commande.aliases.join('`, `') : 'Aucun'}\``);
+        helpEmbed.setTitle(`Aide pour la commande : ${commande.config.name}`);
+        helpEmbed.setDescription(`<> = Requis, [] = Optionnel\nCatégorie : **${commande.config.category}**`);
+        helpEmbed.addField('Description :', commande.help.description);
+        helpEmbed.addField('Utilisation :', commande.help.syntax.length > 0 ? commande.help.syntax : commande.config.name);
+        helpEmbed.addField('Aliases :', `\`${commande.config.aliases.length > 0 ? commande.config.aliases.join('`, `') : 'Aucun'}\``);
     } else {
         helpEmbed.setTitle('Liste des commandes :');
         helpEmbed.setFooter(`*help <command> pour une aide détaillée`);
-        const categories = new Set(bot.commands.map(c => c.category));
+        const categories = new Set(bot.commands.map(c => c.config.category));
         for (let category of categories) {
-            helpEmbed.addField(category, bot.commands.map(c => `**\`${c.name}\`** : ${c.description}`));
+            helpEmbed.addField(category, bot.commands.map(c => `**\`${c.config.name}\`** : ${c.help.description}`));
         }
     }
     await message.channel.send(helpEmbed);
 };
 module.exports.config = {
-    category: 'utils.js',
+    category: 'Utils',
     name: __filename.slice(__dirname.length + 1, __filename.length - 3),
     aliases: ['h'],
     forceBotChannel: true,
