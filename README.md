@@ -21,8 +21,6 @@ NodeJS v14
 
 # Remerciements et notes :
 
-Ayfri pour son adaptation de command handler assez mignonne [ici](https://github.com/Ayfri/basicCommandHandler)
+Ayfri pour les bases du command handler [ici](https://github.com/Ayfri/basicCommandHandler)
 
-Sworder pour son [dashboard](https://github.com/InspirusM/Dashboard.io) de bot discord
-
-Chaun14 pour son readme et quelques fonctionnalités
+Chaun14 pour son readme et quelques fonctionnalités sympatoches
