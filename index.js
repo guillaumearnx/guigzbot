@@ -79,6 +79,9 @@ runWebServer(bot);
 //Debug
 bot.on("warn", (e) => console.warn(e));
 bot.on("error", async (e) => await reportErr(bot, e, 'Oh oh ... Un petit soucis est survenu.'));
+process.on('unhandledRejection', async (error) => {
+    await reportErr(bot, error, "Oh oh ... Un petit soucis est survenu")
+});
 //bot.on("debug", (e) => console.info(e));
 
 //Export
