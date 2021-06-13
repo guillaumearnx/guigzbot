@@ -1,8 +1,7 @@
 const {MessageEmbed} = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    const helpEmbed = new MessageEmbed()
-        .setColor("#4287F5")
+    const helpEmbed = new MessageEmbed().setColor("#4287F5")
     const commande = bot.commands.get(args[0]) || bot.commands.get(bot.aliases.get(args[0]));
     if (commande) {
         helpEmbed.setTitle(`Aide pour la commande : ${commande.config.name}`);
@@ -17,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
         for (let category of categories) {
             let categCommands = [];
             bot.commands.forEach(c => {
-                if(c.config.category === category)
+                if (c.config.category === category)
                     categCommands.push(`**\`${c.config.name}\`** : ${c.help.description}`);
             })
             helpEmbed.addField(category, categCommands);

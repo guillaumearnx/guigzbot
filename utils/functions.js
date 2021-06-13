@@ -36,7 +36,7 @@ async function welcomeSend(bot, member) {
     ctx.drawImage(pfp, x, y)
     ctx.fillStyle = '#ffffff'
     let text = `Bienvenue ${member.user.tag}!`
-    ctx.font = `${ctx.measureText(text).width / 5.6 }px sans-serif`
+    ctx.font = `${ctx.measureText(text).width / 5.6}px sans-serif`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 60 + pfp.height)
     ctx.font = '28px sans-serif'
@@ -56,12 +56,12 @@ async function checkOwner(id) {
     return false;
 }
 
-async function reportErr(bot, err, description){
-    let errorLink =  await haste.post(err);
+async function reportErr(bot, err, description) {
+    let errorLink = await haste.post(err);
     let errEmbed = new MessageEmbed()
         .setTitle("Rapport d'erreur")
         .setDescription(description)
-        .addField('Erreur :', err)
+        .addField('Erreur :', errorLink)
         .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
         .setTimestamp()
         .setColor('#dd0000');

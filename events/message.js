@@ -1,6 +1,5 @@
-const {MessageEmbed} = require("discord.js");
 const {BOT_PREFIX, CHANNELS} = require('../config.json');
-const {checkOwner, reportErr} = require('../utils/functions')
+const {checkOwner} = require('../utils/functions')
 
 module.exports = async (bot, message) => {
     if (message.author.bot || message.channel.type === 'dm') {
@@ -30,6 +29,6 @@ module.exports = async (bot, message) => {
                 return;
             }
         }
-        await cmd.run(bot, message, args)
+        await cmd.run(bot, message, args);
     }
 };

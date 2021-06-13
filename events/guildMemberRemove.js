@@ -9,8 +9,7 @@ module.exports = async (bot, member) => {
     const background = await loadImage(
         path.join(__dirname, `../assets/imgs/embedmember/image3.jpg`)
     )
-    let x = 0
-    let y = 0
+    let x = 0, y = 0;
     ctx.drawImage(background, x, y)
     const pfp = await loadImage(
         member.user.displayAvatarURL({
@@ -22,7 +21,7 @@ module.exports = async (bot, member) => {
     ctx.drawImage(pfp, x, y)
     ctx.fillStyle = '#000000'
     let text = `Au revoir ${member.user.tag}!`
-    ctx.font = `${ctx.measureText(text).width / 5.3 }px sans-serif`
+    ctx.font = `${ctx.measureText(text).width / 5.3}px sans-serif`
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 60 + pfp.height)
     ctx.font = '32px sans-serif'
