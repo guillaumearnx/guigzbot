@@ -14,6 +14,7 @@ async function addRole(bot, member) {
         await welcomeSend(bot, member)
     } catch (e) {
         console.log(`Error adding role to user ${member.id}.`);
+        await reportErr(bot, e, "Petit soucis pendant l'ajout d'un role")
     }
 }
 
