@@ -58,15 +58,20 @@ async function checkOwner(id) {
 }
 
 async function reportErr(bot, err, description) {
-    let errorLink = await haste.post(err);
-    let errEmbed = new MessageEmbed()
-        .setTitle("Rapport d'erreur")
-        .setDescription(description)
-        .addField('Erreur :', errorLink)
-        .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
-        .setTimestamp()
-        .setColor('#dd0000');
-    bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(errEmbed)
+    try {
+        let errorLink = await haste.post(err);
+        console.log(`Error generated for : ${description} -> ${errorLink}`)
+        let errEmbed = new MessageEmbed()
+            .setTitle("Rapport d'erreur")
+            .setDescription(description)
+            .addField('Erreur :', errorLink)
+            .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
+            .setTimestamp()
+            .setColor('#dd0000');
+        bot.channels.cache.get(`${CHANNELS["BOT_LOGS"]}`).send(`<@!${BOT_OWNER}>`, {embed: errEmbed})
+    } catch (erri) {
+        console.log("Une erreur est survenue : " + err + "\n -> " + erri)
+    }
 }
 
 module.exports = {
