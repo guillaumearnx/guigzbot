@@ -18,9 +18,7 @@ module.exports = async (bot, member) => {
                 .setFooter(`ReCaptcha by ${bot.user.username}`, bot.user.displayAvatarURL())
             await member.send(embed);
         }catch(err){
-            console.log(OWNERS)
-            console.log(OWNERS["ID"])
-            await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`<@${OWNERS["ID"]}> | Je n'ai pas réussi à envoyer de message à ${member.user.username}\n${err}`)
+            await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`<@${OWNERS[0]["ID"]}> | Je n'ai pas réussi à envoyer de message à ${member.user.username}\n${err}`)
         }
     } else {
         if (empty[0].indexOf(RECAPTCHA["VERIFIED_ROLE_ID"]) > -1 || empty[1].indexOf(RECAPTCHA["VERIFIED_ROLE_ID"]) > -1) {

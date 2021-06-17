@@ -68,9 +68,7 @@ async function reportErr(bot, err, description) {
             .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
             .setTimestamp()
             .setColor('#dd0000');
-        console.log(OWNERS)
-        console.log(OWNERS["ID"])
-        await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`<@!${OWNERS["ID"]}>`, {embed: errEmbed})
+        await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`<@!${OWNERS[0]["ID"]}>`, {embed: errEmbed})
     } catch (erri) {
         console.log("Une erreur est survenue : " + err + "\n -> " + erri)
     }
