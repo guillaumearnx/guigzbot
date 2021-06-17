@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const {isValidLink, getDiscordId, removeLink} = require("./utils/pools");
 const {addRole} = require("./utils/functions");
-const {RECAPTCHA, CHANNELS, DISCORD_GUILD_ID} = require("./config.json");
+const {RECAPTCHA, DISCORD_GUILD_ID} = require("./config.json");
 let running = false, botTarget;
 
 const app = express();

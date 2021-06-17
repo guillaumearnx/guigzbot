@@ -1,5 +1,5 @@
 const {MessageEmbed} = require("discord.js");
-const {BOTS_LOGS} = require("../config.json")
+const {CHANNELS} = require("../config.json")
 
 module.exports.run = async (bot, message, args) => {
     switch (args[0]) {
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
             .setFooter(`Event by ${bot.user.username}`, bot.user.displayAvatarURL())
             .setDescription(`${message.author.tag} a lancé un événement`)
             .addField("Événement", args[0])
-        await message.guild.channels.cache.get(BOTS_LOGS).send(eventEmbed);
+        await message.guild.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(eventEmbed);
     }
 
 };
