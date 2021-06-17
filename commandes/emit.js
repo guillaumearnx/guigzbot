@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
             bot.emit(args[0], message.guild.members.cache.get(message.author.id))
             break;
         default:
-            message.channel.send(`L'événement ${args[0]} n'existe pas ..`)
+            await message.channel.send(`L'événement ${args[0]} n'existe pas ..`)
             break;
     }
 

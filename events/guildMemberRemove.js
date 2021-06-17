@@ -29,5 +29,5 @@ module.exports = async (bot, member) => {
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 100 + pfp.height)
     const attachment = new MessageAttachment(canvas.toBuffer())
-    bot.channels.cache.get(CHANNELS["WELCOME_CHANNEL"]).send(`<@${member.id}>`, attachment)
+    await bot.channels.cache.get(CHANNELS["WELCOME_CHANNEL"]).send(`<@${member.id}>`, attachment)
 };

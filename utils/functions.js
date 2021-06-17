@@ -45,7 +45,7 @@ async function welcomeSend(bot, member) {
     x = canvas.width / 2 - ctx.measureText(text).width / 2
     ctx.fillText(text, x, 100 + pfp.height)
     const attachment = new MessageAttachment(canvas.toBuffer())
-    bot.channels.cache.get(CHANNELS["WELCOME_CHANNEL"]).send(`<@${member.id}>`, attachment)
+    await bot.channels.cache.get(CHANNELS["WELCOME_CHANNEL"]).send(`<@${member.id}>`, attachment)
 }
 
 async function checkOwner(id) {
@@ -68,7 +68,9 @@ async function reportErr(bot, err, description) {
             .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
             .setTimestamp()
             .setColor('#dd0000');
-        bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`<@!${OWNERS["ID"]}>`, {embed: errEmbed})
+        console.log(OWNERS)
+        console.log(OWNERS["ID"])
+        await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`<@!${OWNERS["ID"]}>`, {embed: errEmbed})
     } catch (erri) {
         console.log("Une erreur est survenue : " + err + "\n -> " + erri)
     }
