@@ -3,7 +3,9 @@
   "BOT_TOKEN": "",
   "BOT_PREFIX": "",
   "CHANNELS": {
-    "BOTS_LOGS": ""
+    "BOTS_LOGS": "",
+    "BOTS_COMMANDS": "",
+    "WELCOME_CHANNEL": ""
   },
   "DISCORD_GUILD_ID": "",
   "OTHERS": {
@@ -21,6 +23,7 @@
     "PORT": "",
     "RECAPTCHA_SITE_KEY": "",
     "RECAPTCHA_SECRET_KEY": "",
+    "TEMPO_ROLE_ID": "",
     "VERIFIED_ROLE_ID": ""
   }
 }
