@@ -4,8 +4,7 @@ const {DISCORD_GUILD_ID, CHANNELS, RECAPTCHA} = require("../config.json")
 const path = require('path')
 
 module.exports = async (bot, member) => {
-    if(message.guild.roles.cache.find(x => x.id === `${RECAPTCHA["VERIFIED_ROLE_ID"]}`)){
-        if (user.roles.cache.has(muterole.id)) { return message.channel.send("T'inquiètes il est déjà mute") }
+    if(member.roles.cache.find(x => x.id === `${RECAPTCHA["VERIFIED_ROLE_ID"]}`)){
         const canvas = createCanvas(700, 250)
         const ctx = canvas.getContext('2d')
         const background = await loadImage(

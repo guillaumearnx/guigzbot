@@ -31,7 +31,10 @@ app.post('/verify/:verifyId?', async (req, res) => {
     if (!isValidLink(req.params.verifyId)) return res.sendFile(path.join(__dirname, './utils/captcha/html/invalidLink.html'));
 
     // noinspection JSUnresolvedVariable
-    await addRole(botTarget, botTarget.guilds.cache.get(`${DISCORD_GUILD_ID}`).members.cache.get(getDiscordId(req.params.verifyId)));
+    const guild = await botTarget.guilds.cache.get(`${DISCORD_GUILD_ID}`);
+    let tempoRole = await guild.roles.cache.get(`${RECAPTCHA["TEMPO_ROLE_ID"]}`)
+    // noinspection JSUnresolvedVariable
+    await guild.members.cache.get(getDiscordId(req.params.verifyId)).roles.add(tempoRole)
 
     // noinspection JSUnresolvedVariable
     removeLink(req.params.verifyId);
