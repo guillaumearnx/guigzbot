@@ -6,7 +6,7 @@ module.exports = async (bot, button) => {
     switch (button.id) {
         case "reglement":
             if (!member.roles.cache.some(role => role.id === RECAPTCHA["VERIFIED_ROLE_ID"]))
-                await addRole(bot, button.clicker.user)
+                await addRole(bot, button.clicker.member)
             button.defer()
             break;
         default:
