@@ -6,7 +6,6 @@ const {runWebServer} = require("./webserver.js");
 const {BOT_TOKEN, BOT_PREFIX, DISCORD_GUILD_ID} = require('./config.json');
 require('colors');
 const {reportErr} = require("./utils/functions");
-const disbut = require('discord-buttons');
 
 //Verification config
 (() => {
@@ -34,7 +33,7 @@ const bot = new Client();
 bot.commands = new Collection();
 bot.aliases = new Collection();
 // noinspection JSValidateTypes
-disbut(bot);
+require('discord-buttons')(bot);
 console.log(("Lancement du bot ...").brightRed);
 
 //Évenements et commandes
