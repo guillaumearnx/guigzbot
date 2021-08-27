@@ -1,8 +1,8 @@
 const {BOT_PREFIX} = require('../config.json')
-const {MessageActionRow, MessageButton} = require('discord-buttons');
+//const {MessageActionRow, MessageButton} = require('discord-buttons');
 
 module.exports.run = async (bot, message, args) => {
-    if (args.length < 2)
+    /*if (args.length < 2)
         return;
     const channel = message.mentions.channels.first() || message.guild.channels.cache.get(args[0])
     if (!channel)
@@ -50,8 +50,8 @@ module.exports.run = async (bot, message, args) => {
     }).catch((err) => {
         message.channel.send('temps ecoule');
         console.log(err)
-    });
-
+    });*/
+    message.channel.send(`Commande temporairement désactivée`)
 };
 
 module.exports.config = {
