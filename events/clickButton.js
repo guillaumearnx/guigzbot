@@ -10,7 +10,7 @@ module.exports = async (bot, button) => {
                 await member.roles.remove(roleTempo)
             if (!member.roles.cache.some(role => role.id === `${RECAPTCHA["VERIFIED_ROLE_ID"]}`))
                 await addRole(bot, member)
-            button.defer()
+            button.reply.defer()
             break;
         default:
             break;
