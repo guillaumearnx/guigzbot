@@ -7,7 +7,7 @@ function createLink(discordId) {
         discordId: discordId,
         linkId: id
     })
-    setTimeout(function () {
+    setTimeout(() => {
         if (isValidLink(id)) removeLink(id);
     }, 900000)
     return id;

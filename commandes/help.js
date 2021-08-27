@@ -14,15 +14,15 @@ module.exports.run = async (bot, message, args) => {
         helpEmbed.setFooter(`*help <command> pour une aide détaillée`);
         const categories = new Set(bot.commands.map(c => c.config.category));
         for (let category of categories) {
-            let categCommands = [];
+            let commandes = "";
             bot.commands.forEach(c => {
                 if (c.config.category === category)
-                    categCommands.push(`**\`${c.config.name}\`** : ${c.help.description}`);
+                    commandes += `**\`${c.config.name}\`** : ${c.help.description}\n`;
             })
-            helpEmbed.addField(category, categCommands);
+            helpEmbed.addField(category, commandes);
         }
     }
-    await message.channel.send(helpEmbed);
+    await message.channel.send({embeds: [helpEmbed]});
 };
 module.exports.config = {
     category: 'Utils',

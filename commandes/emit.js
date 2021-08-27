@@ -1,12 +1,15 @@
 const {MessageEmbed} = require("discord.js");
+const {welcomeSend, goodbyeSend} = require("../utils/functions");
 const {CHANNELS} = require("../config.json")
 
 module.exports.run = async (bot, message, args) => {
+    await logger();
     switch (args[0]) {
         case "guildMemberAdd":
+            await welcomeSend(bot, message.guild.members.cache.get(message.author.id))
+            break;
         case "guildMemberRemove":
-            await logger();
-            bot.emit(args[0], message.guild.members.cache.get(message.author.id))
+            await goodbyeSend(bot, message.guild.members.cache.get(message.author.id))
             break;
         default:
             await message.channel.send(`L'événement ${args[0]} n'existe pas ..`)
@@ -20,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
             .setFooter(`Event by ${bot.user.username}`, bot.user.displayAvatarURL())
             .setDescription(`${message.author.tag} a lancé un événement`)
             .addField("Événement", args[0])
-        await message.guild.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(eventEmbed);
+        await message.guild.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send({embeds: [eventEmbed]});
     }
 
 };

@@ -30,7 +30,16 @@ let nbCommandes = 0;
 let nbEvents = 0;
 
 //Variable Client
-const bot = new Client();
+const bot = new Client({
+    presence: {
+        activities: [{
+            name: "garnx.fr",
+            type: "PLAYING",
+            url: "https://garnx.fr"
+        }]
+    },
+    intents: 32767
+});
 bot.commands = new Collection();
 bot.aliases = new Collection();
 // noinspection JSValidateTypes
@@ -87,7 +96,7 @@ process.on('unhandledRejection', async (error) => {
 }).on('uncaughtException', async (error) => {
     await reportErr(bot, error, "Oh oh ... Un gros soucis est survenu")
     process.exit(1);
-  })
+})
 //bot.on("debug", (e) => console.info(e));
 
 //Export

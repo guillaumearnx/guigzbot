@@ -8,6 +8,7 @@ const {getRunning} = require("../webserver.js");
 const empty = [["", " "], [null, undefined]]
 
 module.exports = async (bot, member) => {
+    console.log('hello')
     if (getRunning()) {
         try {
             const linkId = createLink(member.id);
@@ -16,7 +17,7 @@ module.exports = async (bot, member) => {
                 .setDescription(`To gain access to this server you must solve a captcha. The link will expire in 15 minutes.\nhttp://${RECAPTCHA["DOMAIN"] === '' ? `localhost:${RECAPTCHA["PORT"]}` : RECAPTCHA["DOMAIN"]}/verify/${linkId}?sitekey=${RECAPTCHA["RECAPTCHA_SITE_KEY"]}`)
                 .setColor('BLUE')
                 .setFooter(`ReCaptcha by ${bot.user.username}`, bot.user.displayAvatarURL())
-            await member.send(embed);
+            await member.send({embeds: [embed]});
         } catch (err) {
             await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`Je n'ai pas réussi à envoyer de message à **${member.user.username}**\n${err}`)
             let tempoRole = await bot.guilds.cache.get(`${DISCORD_GUILD_ID}`).roles.cache.get(`${RECAPTCHA["TEMPO_ROLE_ID"]}`)

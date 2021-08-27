@@ -1,10 +1,13 @@
 module.exports.run = async (bot, message, args) => {
     const amount = parseInt(args[0]) || 1;
-    if (isNaN(amount) || amount > 99 || amount < 1) return
-    await message.delete({timeout: 10, reason: 'It had to be done.'})
-    await message.channel.bulkDelete(amount)
+    if (isNaN(amount) || amount > 99 || amount < 1) return;
+    await message.delete();
+    setTimeout(async () => {
+        await message.channel.bulkDelete(amount).catch(()=>undefined)
+    }, 100)
 
 };
+
 module.exports.config = {
     category: 'Administration',
     specialPermissions: 'administrator',
