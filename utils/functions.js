@@ -3,6 +3,7 @@ const path = require('path')
 const {MessageAttachment, MessageEmbed} = require("discord.js");
 const {RECAPTCHA, DISCORD_GUILD_ID, OWNERS, CHANNELS} = require("../config.json")
 const hastebin = require('hastebin.js');
+
 const haste = new hastebin({url: 'https://paste.garnx.fr'});
 
 async function addRole(bot, member) {
