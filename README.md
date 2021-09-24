@@ -24,3 +24,5 @@ NodeJS v14
 Ayfri pour les bases du command handler [ici](https://github.com/Ayfri/basicCommandHandler)
 
 Chaun14 pour son readme et quelques fonctionnalités sympatoches
+
+[CLQU](https://github.com/clqu) pour la gestion des commandes slash avec DiscordJS V13

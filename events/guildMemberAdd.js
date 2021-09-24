@@ -8,7 +8,6 @@ const {getRunning} = require("../webserver.js");
 const empty = [["", " "], [null, undefined]]
 
 module.exports = async (bot, member) => {
-    console.log('hello')
     if (getRunning()) {
         try {
             const linkId = createLink(member.id);
