@@ -25,7 +25,7 @@ module.exports = async (bot, message) => {
             if (cmd.config.specialPermissions.toLowerCase() === 'administrator') {
                 return;
             }
-            if (cmd.config.forceBotChannel && !(CHANNELS["BOTS_COMMANDS"] === message.channel.id)) {
+            if (cmd.config.forceBotChannel && ([CHANNELS["BOT_COMMANDS"], CHANNELS["BOT_PUBLIC_COMMANDS"]].indexOf(message.channel.id) < 0)) {
                 return;
             }
         }

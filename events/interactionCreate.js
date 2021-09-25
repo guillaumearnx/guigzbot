@@ -24,17 +24,17 @@ module.exports = async (bot, interaction) => {
         if (!interactionCommand || !interactionF) return;
         try {
             if (interactionConfig.specialPermissions.toLowerCase() === 'owner' && !await checkOwner(interaction.user.id)) {
-                return;
+                return interaction.reply({content: 'Vous ne pouvez pas faire ça !', ephemeral: true});
             }
             if (interactionConfig.specialPermissions.toLowerCase() === 'moderator' && !interaction.member.permissions.has('KICK_MEMBERS', true)) {
-                return;
+                return interaction.reply({content: 'Vous ne pouvez pas faire ça !', ephemeral: true});
             }
             if (!interaction.member.permissions.has('ADMINISTRATOR', true)) {
                 if (interactionConfig.specialPermissions.toLowerCase() === 'administrator') {
-                    return;
+                    return interaction.reply({content: 'Vous ne pouvez pas faire ça !', ephemeral: true});
                 }
-                if (interactionConfig.forceBotChannel && !(CHANNELS["BOTS_COMMANDS"] === interaction.channel.id)) {
-                    return;
+                if (interactionConfig.forceBotChannel && ([CHANNELS["BOT_COMMANDS"], CHANNELS["BOT_PUBLIC_COMMANDS"]].indexOf(interaction.channel.id) < 0)) {
+                    return interaction.reply({content: 'Vous ne pouvez pas faire ça ici !', ephemeral: true});
                 }
             }
             await interactionF.run(bot, interaction);
