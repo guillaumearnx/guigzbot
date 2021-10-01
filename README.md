@@ -16,8 +16,8 @@ Voila donc un bot OpenSource, sans réelle utilité mais multifonctions ;)
 # Notes techniques
 
 Ce bot fonctionne avec:
-discord.js v12
-NodeJS v14
+discord.js v13
+NodeJS v16
 
 # Remerciements et notes :
 
