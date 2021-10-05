@@ -39,7 +39,11 @@ module.exports = async (bot, interaction) => {
             }
             await interactionF.run(bot, interaction);
         } catch (error) {
-            await reportErr(bot, error, "Erreur lors de l'execution d'une interraction")
+            if (!bot.maintenance) {
+                await reportErr(bot, error, "Erreur lors de l'execution d'une interraction")
+            } else {
+                console.error(error)
+            }
             await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
         }
 
