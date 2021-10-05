@@ -131,9 +131,11 @@ runWebServer(bot);
 bot.on("warn", (e) => console.warn(e));
 bot.on("error", async (e) => await reportErr(bot, e, 'Oh oh ... Un petit soucis est survenu.'));
 process.on('unhandledRejection', async (error) => {
-    await reportErr(bot, error, "Oh oh ... Un petit soucis est survenu")
+    if (!bot.maintenance)
+        await reportErr(bot, error, "Oh oh ... Un petit soucis est survenu")
 }).on('uncaughtException', async (error) => {
-    await reportErr(bot, error, "Oh oh ... Un gros soucis est survenu")
+    if (!bot.maintenance)
+        await reportErr(bot, error, "Oh oh ... Un gros soucis est survenu")
     process.exit(1);
 })
 //bot.on("debug", (e) => console.info(e));
