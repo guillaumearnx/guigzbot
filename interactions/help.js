@@ -2,7 +2,7 @@ const {MessageEmbed} = require("discord.js");
 
 module.exports = {
     config: {
-        description: "Effectue un test de latence (API Discord comprise)",
+        description: "Affiche l'aide du bot",
         category: 'Utils',
         specialPermissions: '',
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
