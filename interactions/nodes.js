@@ -1,5 +1,6 @@
 const https = require('https')
 const {MessageEmbed} = require("discord.js");
+const {PTERODACTYL_API_TOKEN} = require('../config.json')
 
 const sendInfos = async (nodeNb, interaction, chunck, bot) => {
     const nodes = []
@@ -40,7 +41,7 @@ module.exports = {
             path: '/api/application/nodes',
             method: 'GET',
             headers: {
-                "Authorization": "Bearer nEXUXHgzSIG78B2Y2cgjDk3oDBnLh2WaQ3REOO8cHqls2veO"
+                "Authorization": `Bearer ${PTERODACTYL_API_TOKEN}`
             },
             json: true
         }
