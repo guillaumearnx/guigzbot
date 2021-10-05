@@ -16,9 +16,9 @@ const sendInfos = async (nodeNb, interaction, chunck, bot) => {
         nodes.push(nodeEmbed)
     }
     try {
-        await interaction.reply({content: "Voir console !", embeds: ((isNaN(nodeNb)) ? nodes : [nodes[nodeNb - 1]])});
-    }catch (err){
-        await interaction.reply({content:"Impossible de trouver cette Node", ephemeral:true})
+        await interaction.reply({embeds: ((isNaN(nodeNb)) ? nodes : [nodes[nodeNb - 1]])});
+    } catch (err) {
+        await interaction.reply({content: "Impossible de trouver cette Node", ephemeral: true})
     }
 }
 
