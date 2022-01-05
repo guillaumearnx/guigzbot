@@ -1,6 +1,7 @@
 {
   "_comment": "Hello, welcome in config. Allowed values for RECAPTCHA['ACTIVE'] are ON, OFF, TRUE, FALSE, Y, N",
   "BOT_TOKEN": "",
+  "BOT_ID": "",
   "BOT_PREFIX": "",
   "CHANNELS": {
     "BOTS_LOGS": "",
