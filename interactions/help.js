@@ -8,9 +8,7 @@ module.exports = {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         forceBotChannel: false,
     },
-    options: [
-        {type: 4, name: "commande", description: "Affiche l'aide de la commande", required: false}
-    ],
+    options: [{type: 4, name: "commande", description: "Affiche l'aide de la commande", required: false}],
     run: async (bot, interaction) => {
         const helpEmbed = new MessageEmbed().setColor("#4287F5")
         if (interaction.options._hoistedOptions.length === 1 && interaction.options._hoistedOptions[0].name === 'commande') {
@@ -25,13 +23,12 @@ module.exports = {
             }
         } else {
             helpEmbed.setTitle('Liste des commandes :');
-            helpEmbed.setFooter(`*help <command> pour une aide détaillée`);
+            helpEmbed.setFooter({text: `*help <command> pour une aide détaillée`});
             const categories = new Set(bot.commands.map(c => c.config.category));
             for (let category of categories) {
                 let commandes = "";
                 bot.commands.forEach(c => {
-                    if (c.config.category === category)
-                        commandes += `**\`${c.config.name}\`** : ${c.help.description}\n`;
+                    if (c.config.category === category) commandes += `**\`${c.config.name}\`** : ${c.help.description}\n`;
                 })
                 helpEmbed.addField(category, commandes);
             }

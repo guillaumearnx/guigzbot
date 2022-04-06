@@ -15,7 +15,7 @@ module.exports = async (bot, member) => {
                 .setTitle('reCAPTCHA Verification')
                 .setDescription(`To gain access to this server you must solve a captcha. The link will expire in 15 minutes.\nhttp://${RECAPTCHA["DOMAIN"] === '' ? `localhost:${RECAPTCHA["PORT"]}` : RECAPTCHA["DOMAIN"]}/verify/${linkId}?sitekey=${RECAPTCHA["RECAPTCHA_SITE_KEY"]}`)
                 .setColor('BLUE')
-                .setFooter(`ReCaptcha by ${bot.user.username}`, bot.user.displayAvatarURL())
+                .setFooter({text: `ReCaptcha by ${bot.user.username}`, iconURL: bot.user.displayAvatarURL()})
             await member.send({embeds: [embed]});
         } catch (err) {
             await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send(`Je n'ai pas réussi à envoyer de message à **${member.user.username}**\n${err}`)

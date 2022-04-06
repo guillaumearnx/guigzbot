@@ -22,16 +22,12 @@ async function addRole(bot, member) {
 async function goodbyeSend(bot, member) {
     const canvas = createCanvas(700, 250)
     const ctx = canvas.getContext('2d')
-    const background = await loadImage(
-        path.join(__dirname, `../assets/imgs/embedmember/image3.jpg`)
-    )
+    const background = await loadImage(path.join(__dirname, `../assets/imgs/embedmember/image3.jpg`))
     let x = 0, y = 0;
     ctx.drawImage(background, x, y)
-    const pfp = await loadImage(
-        member.user.displayAvatarURL({
-            format: 'png',
-        })
-    )
+    const pfp = await loadImage(member.user.displayAvatarURL({
+        format: 'png',
+    }))
     x = canvas.width / 2 - pfp.width / 2
     y = 25
     ctx.drawImage(pfp, x, y)
@@ -53,17 +49,13 @@ async function goodbyeSend(bot, member) {
 async function welcomeSend(bot, member) {
     const canvas = await createCanvas(700, 250)
     const ctx = canvas.getContext('2d')
-    const background = await loadImage(
-        path.join(__dirname, `../assets/imgs/embedmember/image${Math.floor(Math.random() * 3)}.jpg`)
-    )
+    const background = await loadImage(path.join(__dirname, `../assets/imgs/embedmember/image${Math.floor(Math.random() * 3)}.jpg`))
     let x = 0
     let y = 0
     ctx.drawImage(background, x, y)
-    const pfp = await loadImage(
-        member.user.displayAvatarURL({
-            format: 'png',
-        })
-    )
+    const pfp = await loadImage(member.user.displayAvatarURL({
+        format: 'png',
+    }))
     x = canvas.width / 2 - pfp.width / 2
     y = 25
     ctx.drawImage(pfp, x, y)
@@ -99,7 +91,7 @@ async function reportErr(bot, err, description) {
             .setTitle("Rapport d'erreur")
             .setDescription(description)
             .addField('Erreur :', errorLink)
-            .setFooter(`Error by ${bot.user.username}`, bot.user.displayAvatarURL())
+            .setFooter({text: `Error by ${bot.user.username}`, iconURL: bot.user.displayAvatarURL()})
             .setTimestamp()
             .setColor('#dd0000');
         const channel = await bot.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`)
@@ -111,9 +103,5 @@ async function reportErr(bot, err, description) {
 }
 
 module.exports = {
-    addRole,
-    welcomeSend,
-    checkOwner,
-    reportErr,
-    goodbyeSend
+    addRole, welcomeSend, checkOwner, reportErr, goodbyeSend
 }

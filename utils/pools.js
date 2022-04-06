@@ -4,8 +4,7 @@ let linkPool = [];
 function createLink(discordId) {
     let id = crypto.randomBytes(4).toString('hex');
     linkPool.push({
-        discordId: discordId,
-        linkId: id
+        discordId: discordId, linkId: id
     })
     setTimeout(() => {
         if (isValidLink(id)) removeLink(id);
@@ -14,26 +13,20 @@ function createLink(discordId) {
 }
 
 function isValidLink(link) {
-    for (let i = 0; i < linkPool.length; i++)
-        if (linkPool[i].linkId === link) return true;
+    for (let i = 0; i < linkPool.length; i++) if (linkPool[i].linkId === link) return true;
     return false;
 }
 
 function removeLink(link) {
-    for (let i = 0; i < linkPool.length; i++)
-        if (linkPool[i].linkId === link) delete linkPool[i];
+    for (let i = 0; i < linkPool.length; i++) if (linkPool[i].linkId === link) delete linkPool[i];
     linkPool = linkPool.filter(n => n);
 }
 
 function getDiscordId(link) {
-    for (let i = 0; i < linkPool.length; i++)
-        if (linkPool[i].linkId === link) return linkPool[i].discordId;
+    for (let i = 0; i < linkPool.length; i++) if (linkPool[i].linkId === link) return linkPool[i].discordId;
     return false;
 }
 
 module.exports = {
-    createLink,
-    isValidLink,
-    removeLink,
-    getDiscordId
+    createLink, isValidLink, removeLink, getDiscordId
 }

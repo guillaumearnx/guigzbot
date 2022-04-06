@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
         const eventEmbed = new MessageEmbed()
             .setColor("#ffaa00")
             .setTitle("Événement simulé")
-            .setFooter(`Event by ${bot.user.username}`, bot.user.displayAvatarURL())
+            .setFooter({text: `Event by ${bot.user.username}`, iconURL: bot.user.displayAvatarURL()})
             .setDescription(`${message.author.tag} a lancé un événement`)
             .addField("Événement", args[0])
         await message.guild.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`).send({embeds: [eventEmbed]});
@@ -36,7 +36,5 @@ module.exports.config = {
 };
 
 module.exports.help = {
-    description: 'Émettre un événement',
-    syntax: `emit <event>`,
-    examples: `emit guildMemberAdd`,
+    description: 'Émettre un événement', syntax: `emit <event>`, examples: `emit guildMemberAdd`,
 };

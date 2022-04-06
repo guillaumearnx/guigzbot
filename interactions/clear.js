@@ -6,9 +6,7 @@ module.exports = {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         forceBotChannel: false,
     },
-    options: [
-        {type: 5, name: "amount", description: "Nombre de messages a supprimer", required: false}
-    ],
+    options: [{type: 5, name: "amount", description: "Nombre de messages a supprimer", required: false}],
     run: async (bot, interaction) => {
         const amount = interaction.options._hoistedOptions[0] ? interaction.options._hoistedOptions[0].value : 1;
         if (isNaN(amount) || amount > 99 || amount < 1) return;

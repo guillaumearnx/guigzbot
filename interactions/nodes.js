@@ -6,7 +6,7 @@ const sendInfos = async (nodeNb, interaction, chunck, bot) => {
     const nodes = []
     for (let node of chunck["data"]) {
         node = node.attributes;
-        const nodeEmbed = new MessageEmbed().setTitle(`:desktop: ${node.name}`).setDescription(`${node.description} | ${node["maintenance_mode"] ? "**Developpement**" : "**Production**"}`).setThumbnail("https://cdn.icon-icons.com/icons2/534/PNG/128/rack-server-magnifier_icon-icons.com_52826.png").setColor("#AEF1A4").setFooter(`nodes by ${bot.user.tag}`);
+        const nodeEmbed = new MessageEmbed().setTitle(`:desktop: ${node.name}`).setDescription(`${node.description} | ${node["maintenance_mode"] ? "**Developpement**" : "**Production**"}`).setThumbnail("https://cdn.icon-icons.com/icons2/534/PNG/128/rack-server-magnifier_icon-icons.com_52826.png").setColor("#AEF1A4").setFooter({text: `nodes by ${bot.user.tag}`});
         nodeEmbed.addField("ID", `${node.id}`, true)
         nodeEmbed.addField("UUID", `${node['uuid']}`, true)
         nodeEmbed.addField('FQDN', `${node['fqdn']}`, true)
@@ -31,19 +31,12 @@ module.exports = {
         name: __filename.slice(__dirname.length + 1, __filename.length - 3),
         forceBotChannel: true,
     },
-    options: [
-        {type: 5, name: "nodeid", description: "Numéro de node", required: false}
-    ],
+    options: [{type: 5, name: "nodeid", description: "Numéro de node", required: false}],
     run: async (bot, interaction) => {
         const options = {
-            hostname: 'pterodactyl.garnx.fr',
-            port: 443,
-            path: '/api/application/nodes',
-            method: 'GET',
-            headers: {
+            hostname: 'pterodactyl.garnx.fr', port: 443, path: '/api/application/nodes', method: 'GET', headers: {
                 "Authorization": `Bearer ${PTERODACTYL_API_TOKEN}`
-            },
-            json: true
+            }, json: true
         }
         const req = await https.request(options, res => {
             let chunck;
@@ -52,15 +45,11 @@ module.exports = {
             })
             res.on('end', async () => {
                 chunck = JSON.parse(chunck.replace('undefined', ''));
-                if (interaction.options._hoistedOptions[0])
-                    await sendInfos(interaction.options._hoistedOptions[0].value, interaction, chunck, bot);
-                else
-                    await sendInfos(undefined, interaction, chunck, bot);
+                if (interaction.options._hoistedOptions[0]) await sendInfos(interaction.options._hoistedOptions[0].value, interaction, chunck, bot); else await sendInfos(undefined, interaction, chunck, bot);
             })
-        }).on('error', async error => {
+        }).on('error', async () => {
             await interaction.reply({
-                content: "Impossible de continuer avec cette IP !",
-                ephemeral: true
+                content: "Impossible de continuer avec cette IP !", ephemeral: true
             });
         })
         req.end()

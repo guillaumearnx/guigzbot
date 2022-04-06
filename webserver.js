@@ -78,6 +78,5 @@ function getRunning() {
 }
 
 module.exports = {
-    runWebServer,
-    getRunning
+    runWebServer, getRunning
 }
