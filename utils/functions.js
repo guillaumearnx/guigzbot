@@ -1,13 +1,10 @@
-const { Routes, Collection, SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require("discord.js");
+const { Routes, Collection, SlashCommandBuilder, AttachmentBuilder } = require("discord.js");
 const { REST } = require("@discordjs/rest");
-const { CLIENT, OWNERS, CHANNELS } = require("../config.json");
+const { CLIENT, CHANNELS } = require("../config.json");
 const path = require("path");
 const { createCanvas, loadImage } = require("canvas");
-const hastebin = require("hastebin.js");
 const { promises } = require("fs");
 require("colors");
-
-const haste = new hastebin({ url: "https://paste.garnx.fr" });
 
 const deployInteractions = async (global = false, interactions = false) => {
 	console.info("\nDeploying interactions".blue + ` ${global ? "on all guilds".cyan : "on main guild".cyan}`);
@@ -145,27 +142,6 @@ const welcome = async (bot, member) => {
 	await channel.send({ content: `<@${member.user.id}>`, files: [attachment] });
 };
 
-const report = async (client, error, description) => {
-	try {
-		const link = await haste.post(error);
-		console.log(`Error generated for : ${description} -> ${link}`.red);
-		// noinspection JSCheckFunctionSignatures
-		const errEmbed = new EmbedBuilder()
-			.setTitle("Error report")
-			.setDescription(description)
-			.addFields([{ name: "Erreur :", value: `${link}` }])
-			.setFooter({ iconURL: client.user.displayAvatarURL(), text: `Error by ${client.user.username}` })
-			.setTimestamp()
-			.setColor("#dd0000");
-		const channel = await client.channels.cache.get(`${CHANNELS["BOTS_LOGS"]}`);
-		await channel.send(`<@!${OWNERS[0]["ID"]}>`);
-		await channel.send({ embeds: [errEmbed] });
-	}
-	catch (err) {
-		console.error("Une erreur est survenue : " + error + "\n -> " + err);
-	}
-};
-
 const buildOptionWithChoices = (optionData, optionCreated) => {
 	{
 		optionCreated = optionCreated.setName(optionData.name.toLowerCase()).setDescription(optionData.description).setRequired(optionData.required).setRequired(optionData.required ? optionData.required : false);
@@ -175,5 +151,5 @@ const buildOptionWithChoices = (optionData, optionCreated) => {
 };
 
 module.exports = {
-	deployInteractions, loadInteractions, removeIntegrations, goodbye, welcome, report,
+	deployInteractions, loadInteractions, removeIntegrations, goodbye, welcome,
 };
