@@ -1,31 +1,21 @@
 {
-  "_comment": "Hello, welcome in config. Allowed values for RECAPTCHA['ACTIVE'] are ON, OFF, TRUE, FALSE, Y, N",
-  "BOT_TOKEN": "",
-  "BOT_ID": "",
-  "BOT_PREFIX": "",
-  "CHANNELS": {
-    "BOTS_LOGS": "",
-    "BOTS_COMMANDS": "",
-    "WELCOME_CHANNEL": ""
+  "CLIENT": {
+    "ID": "",
+    "TOKEN": "",
+    "MAIN_GUILD_ID": ""
   },
-  "DISCORD_GUILD_ID": "",
+  "CHANNELS": {
+    "LOGS": "",
+    "COMMANDS": "",
+    "PUBLIC_COMMANDS": ""
+  },
   "OTHERS": {
     "GITHUB": "https://github.com/guillaumearnx"
   },
   "OWNERS": [
     {
-      "ID": "629786143906594828",
-      "NAME": "guillaumearnx#4587"
+      "ID": "",
+      "NAME": ""
     }
-  ],
-  "PTERODACTYL_API_TOKEN": "",
-  "RECAPTCHA": {
-    "ACTIVE": "",
-    "DOMAIN": "",
-    "PORT": "",
-    "RECAPTCHA_SITE_KEY": "",
-    "RECAPTCHA_SECRET_KEY": "",
-    "TEMPO_ROLE_ID": "",
-    "VERIFIED_ROLE_ID": ""
-  }
+  ]
 }
