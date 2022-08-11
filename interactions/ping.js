@@ -1,26 +1,28 @@
-const {MessageEmbed} = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    config: {
-        description: "Effectue un test de latence (API Discord comprise)",
-        category: 'Utils',
-        specialPermissions: '',
-        name: __filename.slice(__dirname.length + 1, __filename.length - 3),
-        forceBotChannel: false,
-    }, options: [], run: async (bot, interaction) => {
-        let ping, pingBot;
-        await interaction.reply("Ping ...", {ephemeral: true});
-        await interaction.editReply("Pong ...", {ephemeral: true}).then(async (m) => {
-            ping = m["createdTimestamp"] - interaction.createdTimestamp;
-            pingBot = bot.ws.ping
-        });
-        const pingEmbed = new MessageEmbed()
-            .setTitle("⚙️ Test de latence ...")
-            .setColor("#5865F2")
-            .addField(`Latence du bot`, `${ping}ms`, true)
-            .addField(`Latence de l'API`, `${pingBot}ms`, true)
-            .addField(`Total`, `${ping + pingBot}ms`, false)
-            .setFooter({text: `Ping by ${bot.user.username}`});
-        await interaction.editReply({embeds: [pingEmbed], ephemeral: true});
-    }
-}
+	config: {
+		description: "Test the bot latency",
+		category: "Utils",
+		specialPermissions: "",
+		name: __filename.slice(__dirname.length + 1, __filename.length - 3),
+		inBotChannels: true,
+	},
+	options: [],
+	run: async (client, interaction) => {
+		await interaction.reply("Ping ...", { ephemeral: true });
+		const edit = await interaction.editReply("Pong ...", { ephemeral: true });
+		const host = edit.createdTimestamp - interaction.createdTimestamp, api = client.ws.ping;
+		// noinspection JSCheckFunctionSignatures
+		const pingEmbed = new EmbedBuilder()
+			.setTitle("⚙️ Latency test ...")
+			.setColor("#5865F2")
+			.addFields([
+				{ name: "Client latency", value: `${host}ms`, inline: true },
+				{ name: "API latency", value: `${api}ms`, inline: true },
+				{ name: "Total", value: `${host + api}ms`, inline: false },
+			])
+			.setFooter({ text: `Ping by ${client.user.username}` });
+		await interaction.editReply({ embeds: [pingEmbed], ephemeral: true });
+	},
+};
