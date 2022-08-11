@@ -4,26 +4,32 @@
   "description": "bot for garnx.fr server",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "interactions:guild": "node utils/deploy-integrations.js",
+    "interactions:global": "node utils/deploy-integrations-global.js",
+    "interactions:remove": "node utils/remove-integrations.js",
+    "lint": "eslint . --ext .js",
+    "lint-fix": "eslint . --ext .js --fix"
   },
-  "keywords": [],
+  "keywords": [
+    "bot",
+    "moderation",
+    "garnx"
+  ],
   "author": "garnx",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
-    "@discordjs/rest": "^0.3.0",
-    "axios": "^0.26.1",
-    "body-parser": "^1.20.0",
-    "canvas": "^2.9.1",
+    "canvas": "^2.9.3",
     "colors": "^1.4.0",
-    "discord-api-types": "^0.31.0",
-    "discord.js": "^13.6.0",
-    "express": "^4.17.3",
-    "fs": "^0.0.1-security",
+    "discord.js": "^14.2.0",
+    "@discordjs/rest": "^1.0.1",
     "hastebin.js": "^1.3.2",
-    "path": "^0.12.7",
-    "recursive-readdir": "^2.2.2"
+    "npm-check-updates": "^16.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "nodemon": "^2.0.19"
   },
   "repository": {
     "type": "git",
