@@ -14,4 +14,4 @@ Il a été développé spécifiquement pour le serveur discord [GARNX.FR](https:
 
 Ce bot fonctionne avec:
 discord.js v14
-NodeJS v16.9
+NodeJS v18

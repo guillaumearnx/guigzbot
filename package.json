@@ -1,6 +1,6 @@
 {
   "name": "guigzbot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "bot for garnx.fr server",
   "main": "index.js",
   "scripts": {
