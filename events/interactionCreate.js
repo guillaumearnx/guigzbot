@@ -1,4 +1,5 @@
-const { CHANNELS, OWNERS } = require("../config.json");
+const { CHANNELS, ROLES, OWNERS } = require("../config.json");
+const { welcome } = require("../utils/functions");
 
 const handle = async (run, fail) => {
 	try {
@@ -39,17 +40,17 @@ module.exports = async (bot, interaction) => {
 			await handle(() => interaction.reply(data), () => interaction.editReply(data));
 		}
 	}
-	/* if (interaction.isButton()) {
-        const member = interaction.member;
-        const roleTempo = await bot.guilds.cache.get(`${DISCORD_GUILD_ID}`).roles.cache.get(`${RECAPTCHA["TEMPO_ROLE_ID"]}`);
-        switch (interaction.customId) {
-            case "reglement":
-                if (member.roles.cache.some(role => role.id === `${RECAPTCHA["TEMPO_ROLE_ID"]}`)) await member.roles.remove(roleTempo)
-                if (!member.roles.cache.some(role => role.id === `${RECAPTCHA["VERIFIED_ROLE_ID"]}`)) await addRole(bot, member)
-                await interaction.deferUpdate();
-                break;
-            default:
-                break;
-        }
-    }*/
+	if (interaction.isButton()) {
+		switch (interaction.customId) {
+		case "reglement":
+			if (!interaction.member.roles.cache.some(role => role.id === `${ROLES["VERIFIED"]}`)) {
+				await interaction.member.roles.add(`${ROLES["VERIFIED"]}`);
+				await welcome(bot, interaction.member);
+			}
+			await interaction.deferUpdate();
+			break;
+		default:
+			break;
+		}
+	}
 };

@@ -94,7 +94,7 @@ const goodbye = async (bot, member) => {
 	let x = 0, y = 0;
 	ctx.drawImage(background, x, y);
 	const pfp = await loadImage(member.user.displayAvatarURL({
-		format: "png",
+		extension: "png",
 	}));
 	x = canvas.width / 2 - pfp.width / 2;
 	y = 25;
@@ -121,7 +121,7 @@ const welcome = async (bot, member) => {
 	let y = 0;
 	ctx.drawImage(background, x, y);
 	const pfp = await loadImage(member.user.displayAvatarURL({
-		format: "png",
+		extension: "png",
 	}));
 	x = canvas.width / 2 - pfp.width / 2;
 	y = 25;
